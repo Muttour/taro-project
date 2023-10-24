@@ -80,10 +80,19 @@ export default defineConfig(async (merge, { command, mode }) => {
             namingPattern: 'module', // 转换模式，取值为 global/module
             generateScopedName: '[name]__[local]___[hash:base64:5]'
           }
-        }
+        },
+
       },
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
+      },
+      router: {
+        mode: 'browser',
+        customRoutes: {
+          // "页面路径": "自定义路由"
+          '/pages/index/index': '/index',
+          '/pages/category/index': ['/category'], // 可以通过数组为页面配置多个自定义路由
+        },
       }
     },
     rn: {

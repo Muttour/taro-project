@@ -93,7 +93,8 @@ export default defineConfig(async (merge, { command, mode }) => {
           '/pages/index/index': '/index',
           '/pages/category/index': ['/category'], // 可以通过数组为页面配置多个自定义路由
         },
-      }
+      },
+      esnextModules: ['taro-ui']
     },
     rn: {
       appName: 'taroDemo',

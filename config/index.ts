@@ -2,6 +2,9 @@ import { defineConfig, type UserConfigExport } from '@tarojs/cli'
 import TsconfigPathsPlugin from 'tsconfig-paths-webpack-plugin'
 import devConfig from './dev'
 import prodConfig from './prod'
+// import path from 'path'
+
+const path = require('path')
 
 // https://taro-docs.jd.com/docs/next/config#defineconfig-辅助函数
 export default defineConfig(async (merge, { command, mode }) => {
@@ -17,6 +20,12 @@ export default defineConfig(async (merge, { command, mode }) => {
     },
     sourceRoot: 'src',
     outputRoot: 'dist',
+    alias: {
+      '@': path.resolve(__dirname, '..', 'src'),
+      '@/components': path.resolve(__dirname, '..', 'src/components'),
+      '@/asset': path.resolve(__dirname, '..', 'src/asset'),
+    },
+
     plugins: [],
     defineConstants: {
     },
@@ -32,6 +41,7 @@ export default defineConfig(async (merge, { command, mode }) => {
       enable: false // Webpack 持久化缓存配置，建议开启。默认配置请参考：https://docs.taro.zone/docs/config-detail#cache
     },
     mini: {
+
       postcss: {
         pxtransform: {
           enable: true,
@@ -55,7 +65,8 @@ export default defineConfig(async (merge, { command, mode }) => {
       },
       webpackChain(chain) {
         chain.resolve.plugin('tsconfig-paths').use(TsconfigPathsPlugin)
-      }
+      },
+
     },
     h5: {
       publicPath: '/',
@@ -63,6 +74,11 @@ export default defineConfig(async (merge, { command, mode }) => {
       output: {
         filename: 'js/[name].[hash:8].js',
         chunkFilename: 'js/[name].[chunkhash:8].js'
+      },
+      devServer: {
+        port: 4000,
+        open: false,
+        hot: true,
       },
       miniCssExtractPluginOption: {
         ignoreOrder: true,
@@ -92,6 +108,8 @@ export default defineConfig(async (merge, { command, mode }) => {
           // "页面路径": "自定义路由"
           '/pages/index/index': '/index',
           '/pages/category/index': ['/category'], // 可以通过数组为页面配置多个自定义路由
+          'pages/shoppingCart/index': 'shoppingCart',
+          'pages/myCenter/index': 'myCenter'
         },
       },
       esnextModules: ['taro-ui']

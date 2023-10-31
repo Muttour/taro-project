@@ -1,0 +1,5 @@
+{
+  "[javascript]": {},
+  "files.autoSave": "afterDelay",
+  "editor.defaultFormatter": "esbenp.prettier-vscode"
+}

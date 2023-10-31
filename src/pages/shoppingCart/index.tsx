@@ -3,7 +3,6 @@ import { useLoad } from '@tarojs/taro'
 import './index.less'
 
 export default function Shoppingcart() {
-
   useLoad(() => {
     console.log('Page loaded.')
   })

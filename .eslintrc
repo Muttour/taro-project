@@ -1,20 +1,16 @@
 {
-  "extends": ["taro/react"],
-  // "settings": {
-  //   "import/resolver": {
-  //     "alias": {
-  //       "map": [
-  //         // 这里参照webpack的别名配置映射
-  //         ["", "./src"]
-  //       ],
-  //       // 告诉resolver-alias有哪些后缀的文件要解析
-  //       "extensions": [".ts", ".tsx", ".js", ".jsx", ".json"]
-  //     }
-  //   }
-  // },
+  "extends": ["taro/react", "prettier", "plugin:prettier/recommended"],
+  "parser": "@typescript-eslint/parser",
   "rules": {
     "react/jsx-uses-react": "off",
     "react/react-in-jsx-scope": "off",
     "no-unused-vars": "off"
-  }
+    // "jsx-quotes": 0
+  },
+  "prettier/prettier": [
+    "error",
+    {
+      "endOfLine": "auto" //不让prettier检测文件每行结束的格式
+    }
+  ]
 }

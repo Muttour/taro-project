@@ -7,6 +7,12 @@ export default function Category() {
     console.log('Page loaded.')
   })
 
+  interface Backpack<Type> {
+    add: (obj: Type) => void
+    get: () => Type
+  }
+
+
   return (
     <View>
       <Text> category!</Text>
